@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <link th:href="@{/design/bootstrap/css/sidebar.css}" rel="stylesheet"/>
+    <title>Ajouter shop</title>
+
+    <link th:href="@{/design/bootstrap/css/themify-icons.css}" rel="stylesheet"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/design/bootstrap/css/form-elements.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/design/css/footer.css}"/>
+
+</head>
+
+<body id="page-top">
+
+
+<div id="wrapper">
+
+    <div id="content-wrapper">
+
+        <!-- Logout Modal-->
+
+
+        <!-- Form -->
+        <form id="regForm" action="" method="post" novalidate="novalidate" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-group">
+
+                        <label>Departement<span style="color:red"> *</span></label>
+                        <select id="departement"
+                                name="departement"
+                                class="form-control select2 select2-hidden-accessible"
+                                style="width: 100%;" data-select2-id="1"
+                                tabindex="-1" aria-hidden="true">
+                            <option value="N0005">Nord</option>
+                           <!-- <option th:each="val:${departements}" th:value="${i.code}" th:text="${i.name}"></option>-->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="form-group">
+
+                        <label>Arrondissement<span
+                                style="color:red"> *</span></label>
+                        <select id="arrondissement" onchange="getArrondissement()"
+                                name="arrondissement"
+                                class="form-control select2 select2-hidden-accessible"
+                                style="width: 100%;" data-select2-id="1"
+                                tabindex="-1" aria-hidden="true">
+
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3">
+                    <div class="form-group">
+
+                        <label>Commune<span style="color:red"> *</span></label>
+                        <select id="commune" onchange="getCommune()" name="commune"
+                                class="form-control select2 select2-hidden-accessible"
+                                style="width: 100%;" data-select2-id="1"
+                                tabindex="-1" aria-hidden="true">
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="form-group">
+
+                        <label>Section Communale.<span
+                                style="color:red"> *</span></label>
+                        <select id="section_communale" name="section_communale"
+                                class="form-control select2 select2-hidden-accessible"
+                                style="width: 100%;" data-select2-id="1"
+                                tabindex="-1" aria-hidden="true">
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+    <!-- start Modal -->
+</div>
+<!-- /.content-wrapper -->
+
+
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+
+<!-- Core plugin JavaScript-->
+<!-- <script src="vendor/jquery-easing/jquery.easing.min.js"></script> -->
+<script th:src="@{/design/jquery/jquery.easing.min.js}"></script>
+
+<script type="text/javascript" th:src="@{/design/design/js/image.js}"></script>
+
+<!-- Custom scripts for all pages-->
+<!-- <script src="js/sb-admin.min.js"></script> -->
+<!--<script th:src="@{/design/js/sb-admin.min.js}"></script>-->
+
+<script type="text/javascript" th:src="@{/design/jquery/jquery.min.js}"></script>
+
+<!-- Core plugin JavaScript-->
+<!-- <script src="vendor/jquery-easing/jquery.easing.min.js"></script> -->
+<script th:src="@{/design/jquery/jquery.easing.min.js}"></script>
+
+<!-- Demo scripts for this page-->
+<script th:src="@{/design/datatables/datatables-demo.js}"></script>
+
+<!-- Bootstrap core JavaScript-->
+<script type="text/javascript" th:src="@{/design/jquery/jquery.min.js}"></script>
+<script th:src="@{/design/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Page level plugin JavaScript-->
+<!-- <script src="../design/datatables/dataTables.bootstrap4.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- Demo scripts for this page-->
+<!-- <script type="text/javascript" src="../design/js/image.js"></script>  -->
+<!-- <script type="text/javascript" th:src="@{/design/js/profileUpdate.js}"> </script>
+-->
+<!-- Data tables -->
+<script th:src="@{/design/datatables/jquery.dataTables.min-0.js}"></script>
+<script th:src="@{/design/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
+<script th:src="@{/design/datatables-responsive/js/dataTables.responsive.min.js}"></script>
+<script th:src="@{/design/notification/notifyMessage/js/notifyMessage.js}"></script>
+
+
+<script type="text/javascript" th:src="@{/design/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/design/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/design/js/formStep2.js}"></script>
+
+<script type="text/javascript" th:src="@{/design/js/cropper.css}"></script>
+
+<script th:src="@{/design/js/maskedTextBox.js}"></script>
+
+<script>
+
+    $(document).ready(function () {
+        const x = $('#departement option:selected').val();
+       $.ajax({
+            url: '/api/shop-service/departement/findByCode/' + x,
+            type: 'get',
+            dataType: 'json',
+            contentType: 'application/json',
+            cache: false,
+            timeout: 600000,
+            success: function (returnData) {
+                $('#commune')
+                    .empty()
+                $('#section_communale')
+                    .empty();
+                $('#arrondissement')
+                    .empty();
+                $.each(returnData.arrondissementResponses, function (i, arrondissement) {
+                    $("#arrondissement").append($("<option> </option>").val(arrondissement.code).html(arrondissement.name));
+                });
+
+                $.each(returnData.communeResponses, function (i, commune) {
+                    $("#commune").append($("<option> </option>").val(commune.code).html(commune.name));
+                });
+                $.each(returnData.sectionCommunaleResponses, function (i, sectionCommunale) {
+                    $("#section_communale").append($("<option> </option>").val(sectionCommunale.code).html(sectionCommunale.name));
+                })
+            },
+            error: function (err) {
+                alert("Error "+err.responseText)
+            }
+        });
+    });
+
+    function getArrondissement() {
+        const x = $('#arrondissement option:selected').val();
+        $.ajax({
+            url: '/api/shop-service/arrondissement/findByCode/' + x,
+            type: 'get',
+            processData: false,
+            contentType: "application/json",
+            dataType: "json",
+            cache: false,
+            timeout: 1000000,
+            success: function (returnData) {
+               $('#commune')
+                    .empty();
+
+                $('#section_communale')
+                    .empty();
+
+                $.each(returnData.communeResponses, function (i, commune) {
+                    $("#commune").append($("<option> </option>").val(commune.code).html(commune.name));
+                });
+                $.each(returnData.sectionCommunaleResponses, function (i, sectionCommunale) {
+                    $("#section_communale").append($("<option> </option>").val(sectionCommunale.code).html(sectionCommunale.name));
+                })
+            },
+            error: function (err) {
+                alert("Error "+err.responseText);
+            }
+
+        });
+
+    }
+
+    function getCommune() {
+        const x = $('#commune option:selected').val();
+        $.ajax({
+            url: '/api/shop-service/commune/findByCode/' + x,
+            type: 'get',
+            processData: false,
+            contentType: "application/json",
+            dataType: "json",
+            cache: false,
+            timeout: 1000000,
+            success: function (returnData) {
+                $('#section_communale')
+                    .empty();
+                $.each(returnData.sectionCommunaleResponses, function (i, sectionCommunale) {
+                    $("#section_communale").append($("<option> </option>").val(sectionCommunale.code).html(sectionCommunale.name));
+                })
+            }
+
+        });
+    }
+</script>
+
+
+</body>
+
+
+</html>

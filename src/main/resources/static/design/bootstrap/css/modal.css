@@ -1,0 +1,509 @@
+
+.modal-open {
+    overflow: hidden;
+  }
+  
+  .modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+  }
+  
+  .modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 0.5rem;
+    pointer-events: none;
+  }
+  
+  .modal.fade .modal-dialog {
+    -webkit-transition: -webkit-transform 0.3s ease-out;
+    transition: -webkit-transform 0.3s ease-out;
+    transition: transform 0.3s ease-out;
+    transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+    -webkit-transform: translate(0, -50px);
+    transform: translate(0, -50px);
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .modal.fade .modal-dialog {
+      -webkit-transition: none;
+      transition: none;
+    }
+  }
+  
+  .modal.show .modal-dialog {
+    -webkit-transform: none;
+    transform: none;
+  }
+  
+  .modal-dialog-scrollable {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    max-height: calc(100% - 1rem);
+  }
+  
+  .modal-dialog-scrollable .modal-content {
+    max-height: calc(100vh - 1rem);
+    overflow: hidden;
+  }
+  
+  .modal-dialog-scrollable .modal-header,
+  .modal-dialog-scrollable .modal-footer {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+  }
+  
+  .modal-dialog-scrollable .modal-body {
+    overflow-y: auto;
+  }
+  
+  .modal-dialog-centered {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    min-height: calc(100% - 1rem);
+  }
+  
+  .modal-dialog-centered::before {
+    display: block;
+    height: calc(100vh - 1rem);
+    content: "";
+  }
+  
+  .modal-dialog-centered.modal-dialog-scrollable {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .modal-dialog-centered.modal-dialog-scrollable .modal-content {
+    max-height: none;
+  }
+  
+  .modal-dialog-centered.modal-dialog-scrollable::before {
+    content: none;
+  }
+  
+  .modal-content {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    outline: 0;
+  }
+  
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+  }
+  
+  .modal-backdrop.fade {
+    opacity: 0;
+  }
+  
+  .modal-backdrop.show {
+    opacity: 0.5;
+  }
+  
+  .modal-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    color:#fff;
+    background-color: #295b73;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+  }
+  
+  .modal-header .close {
+    padding: 1rem 1rem;
+    margin: -1rem -1rem -1rem auto;
+  }
+  
+  .modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+  }
+  
+  .modal-body {
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1rem;
+  }
+  
+  .modal-footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    padding: 1rem;
+    border-top: 1px solid #dee2e6;
+    border-bottom-right-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+  }
+  
+  .modal-footer > :not(:first-child) {
+    margin-left: .25rem;
+  }
+  
+  .modal-footer > :not(:last-child) {
+    margin-right: .25rem;
+  }
+  
+  .modal-scrollbar-measure {
+    position: absolute;
+    top: -9999px;
+    width: 50px;
+    height: 50px;
+    overflow: scroll;
+  }
+  
+  @media (min-width: 576px) {
+    .modal-dialog {
+      max-width: 500px;
+      margin: 1.75rem auto;
+    }
+    .modal-dialog-scrollable {
+      max-height: calc(100% - 3.5rem);
+    }
+    .modal-dialog-scrollable .modal-content {
+      max-height: calc(100vh - 3.5rem);
+    }
+    .modal-dialog-centered {
+      min-height: calc(100% - 3.5rem);
+    }
+    .modal-dialog-centered::before {
+      height: calc(100vh - 3.5rem);
+    }
+    .modal-sm {
+      max-width: 300px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .modal-lg,
+    .modal-xl {
+      max-width: 800px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .modal-xl {
+      max-width: 1140px;
+    }
+  }
+
+  .pull-right {
+    float: right!important;
+    color: #79686b;
+}
+
+.modal-header > a:hover{
+  color:#5a0416;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+
+/* Opiont File Upload 2 */
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: "alpha(opacity=0)";
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+}
+
+.thumb {
+  height: 80px;
+  width: 100px;
+  /* border: 1px solid #000; */
+}
+
+ul.thumb-Images li {
+  width: 120px;
+  
+  display: inline-block;
+  vertical-align: top;
+  height: 120px;
+}
+
+.img-wrap {
+  position: relative;
+  display: inline-block;
+  font-size: 0;
+}
+
+.img-wrap .close {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 100;
+  background-color: #295b73;
+  padding: 2px 2px 2px;
+  color: #fff;
+  font-weight: bolder;
+  cursor: pointer;
+  opacity: 0.5;
+  font-size: 12px;
+  line-height: 10px;
+}
+
+.img-wrap:hover .close {
+  opacity: 1;
+  background-color: #8d021f;
+}
+
+.FileNameCaptionStyle {
+  font-size: 12px;
+}
+
+/* Profile User */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg) translate(-50%);
+            transform: rotate(0deg) translate(-50%);
+  }
+  100% {
+    -webkit-transform: rotate(360deg) translate(-50%);
+            transform: rotate(360deg) translate(-50%);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg) translate(-50%);
+            transform: rotate(0deg) translate(-50%);
+  }
+  100% {
+    -webkit-transform: rotate(360deg) translate(-50%);
+            transform: rotate(360deg) translate(-50%);
+  }
+}
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translateY(-50%) translateX(-50%);
+          transform: translateY(-50%) translateX(-50%);
+  -webkit-animation: spin 0.35s infinite linear;
+          animation: spin 0.35s infinite linear;
+  border: 2px solid #707070;
+  border-radius: 50%;
+  border-top-color: white;
+  height: 25px;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  top: 45%;
+  width: 25px;
+}
+.hidden-input {
+  left: -999px;
+  position: absolute;
+}
+.profile {
+  *zoom: 1;
+  background-color: white;
+  border-radius: 2px;
+  display: block;
+  float: none;
+  margin: 5px auto;
+  overflow: hidden;
+  padding-bottom: 20px;
+  
+}
+.profile:before,
+.profile:after {
+  content: "";
+  display: table;
+}
+.profile:after {
+  clear: both;
+}
+.about {
+  font-family: 'Dosis', sans-serif;
+  font-size: 12px;
+  color: #adadad;
+  line-height: 17px;
+}
+.image-wrapper {
+  background: rgba(0, 0, 0, 0.2);
+  bottom: -50px;
+  height: 50px;
+  left: 0;
+  position: absolute;
+  -webkit-transition: bottom 0.15s linear;
+  transition: bottom 0.15s linear;
+  width: 100%;
+}
+.edit {
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  color: white;
+  cursor: pointer;
+  font-size: 22px;
+  top: 10px;
+}
+.cover {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.cover img {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  height: 200px;
+}
+.cover .image-wrapper {
+  bottom: auto;
+  left: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 45px;
+}
+.name {
+  font-family: 'Dosis', sans-serif;
+  font-size: 18px;
+}
+.profile-pic {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  border-radius: 50%;
+  border: 4px solid white;
+  height: 210px;
+  overflow: hidden;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+  width: 210px;
+  top: 0;
+}
+.profile-pic img {
+  box-sizing: border-box;
+  height: 100%;
+  left: 50%;
+  max-height: 100%;
+  position: absolute;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  -webkit-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+  width: auto;
+}
+.profile-pic:hover .image-wrapper {
+  bottom: 0;
+}
+.username {
+  margin-top: 122px;
+  text-align: center;
+}
+.user-info {
+  *zoom: 1;
+  padding: 8px;
+  position: relative;
+}
+.user-info:before,
+.user-info:after {
+  content: "";
+  display: table;
+}
+.user-info:after {
+  clear: both;
+}
+
+
+.layer {
+  background-color: rgba(0, 0, 0, 0.25);
+  display: none;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.layer.visible {
+  display: block;
+}

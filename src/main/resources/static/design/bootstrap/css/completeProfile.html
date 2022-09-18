@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+        <title>Fullscreen Background Image Slideshow with CSS3</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <meta name="description" content="Fullscreen Background Image Slideshow with CSS3 - A Css-only fullscreen background image slideshow" />
+        <meta name="keywords" content="css3, css-only, fullscreen, background, slideshow, images, content" />
+        <meta name="author" content="Codrops" />
+      <!--   <link rel="apple-touch-icon" sizes="76x76" href="../Design/img/apple-icon.png" />-
+		<link rel="icon" type="image/png" href="../Design/img/favicon.png" /> -->
+		
+		
+	
+	<!-- CSS Files -->
+    <link href="../design/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../design/bootstrap/css/form.css" rel="stylesheet" />
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<!--<link href="../Design/bootstrap/css/demo.css" rel="stylesheet" />-->
+	<link href="../design/bootstrap/css/themify-icons.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="../design/font-awesome/css/font-awesome.css" /> -->
+	<link rel="stylesheet" type="text/css" href="../design/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../design/bootstrap/css/form-elements.css" />
+    </head>
+    <body id="page">
+       
+		<!-- bootstrap menu-->
+		
+		  <nav class="navbar navbar-default navbar-static-top">
+                 <div class="container">
+	             <div class="navbar-header">
+	                  <button type="button" class="navbar-toggle navbar-toggler-right border-0"
+                             data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	                     <span class="sr-only">Toggle navigation</span>
+	                     <span class="icon-bar"></span>
+	                     <span class="icon-bar"></span>
+	                     <span class="icon-bar"></span>
+	                   </button>
+	            </div>  
+	       <!-- ***** Menu display at the top right corner of the webpage **** -->	
+ 		    <div id="navbar" class="navbar-collapse collapse">          
+				<ul class="nav navbar-nav navbar-right"> 
+					<li><a href="{% url 'blog-home' %}"><i class="fa fa-lg fa-home"></i></a></li>
+					<li><a href="#">Connexion</a></li>
+					<li><a href="#">Aide</a></li>
+					<li><a href="#">A propos</a></li> 
+				</ul>
+			</div>				
+      </div>
+    </nav>
+		<!-- script-->
+		<script type="text/javascript" src="../design/jquery/jquery.min.js"></script><!---->
+		<script type="text/javascript" src="../design/bootstrap/js/bootstrap.min.js"></script>
+		<!-- fin script-->
+	<!-- fin espace navigation-->
+	<!-- espace inscription -->
+	<div class="col-sm-6 col-sm-offset-3">
+
+		            <!--      Wizard container        -->
+		            <div class="wizard-container">
+
+		                <div class="card wizard-card" data-color="orange" id="wizardProfile">
+		                    <form action="" method="" novalidate="novalidate">
+
+		                    	<div class="wizard-header text-center">
+		                        	
+		                    	</div>
+
+								<div class="wizard-navigation">
+
+
+
+									<div class="divLgnHead">
+							            <table class="lgnTable">
+							                <tbody><tr>
+							                    <td width="40%">
+							                        <div class="lgnTableTd borderLeft"> </div>
+							                    </td>
+							                    <td width="20%" class="text-center lgnTxt">
+							                        Login
+							                    </td>
+							                    <td width="40%">
+							                        <div class="lgnTableTd borderRgt"> </div>
+							                    </td>
+							                </tr></tbody>
+							            </table>
+							        </div>
+
+			                       
+								</div>
+		                        <div class="tab-content">
+		                            <div class="tab-pane active" id="about">
+		                            	<div class="row">
+											
+											<div class="col-sm-8 col-sm-offset-2">
+
+
+
+												<div class="form-group">
+													<input name="firstname" type="text" class="form-control" placeholder="Nom">
+												</div>
+												<div class="form-group">
+													<input name="lastname" type="text" class="form-control" placeholder="Prenom">
+												</div>
+												<div class="form-group">
+													<input name="lastname" type="text" class="form-control" placeholder="Date Naissance">
+												</div>
+												<div class="form-group">
+													<input name="lastname" type="text" class="form-control" placeholder="Ville Naissance">
+												</div>
+												<div class="form-group">
+													<input name="lastname" type="text" class="form-control" placeholder="Telephone">
+												</div>
+												
+												<div class="form-group">
+													<button type="submit" class="btn-sg-in-up" name="next" value="Sign In">Enregistrer</button>
+												</div>
+
+						
+											</div>
+											
+										</div>
+		                            </div>
+									
+									<div class="tab-pane" id="account">
+		                                <h5 class="info-text"> Information Additionnelle </h5>
+		                                <div class="row">
+		                                    <div class="col-sm-8 col-sm-offset-2">
+		                                       <div class="boxes">
+													<div class="form-group">
+													<input name="nif_cin" type="text" class="form-control" placeholder="NIF/CIN">
+													</div>
+													
+												<div class="form-group">
+													<input name="date_naiss" type="text" class="form-control" placeholder="Date Naissance">
+												</div>
+												</div>
+		                                    </div>
+		                                </div>
+		                            </div>
+									
+		                            
+		                        </div>
+		                        <div class="wizard-footer">
+		                  
+		                            <div class="clearfix"></div>
+		                        </div>
+		                    </form>
+		                </div>
+		            </div> <!-- wizard container -->
+		        </div>
+	<!-- fin espace inscription-->	
+    </body>
+	
+	
+	<script src="../design/bootstrap/js/awesomplete.min.js"></script>
+	
+</html>
